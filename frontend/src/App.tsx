@@ -1,35 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Map from './pages/Map';
+import Timeline from './pages/Timeline';
+import Tags from './pages/Tags';
+import Blogs from './pages/Blogs';
+import Header from './components/Header';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Router>
+      <Header />
+      <nav>
+        <Link to="/">Map</Link>
+        <Link to="/blogs">Articles/Blogs</Link>
+        <Link to="/timeline">Timeline</Link>
+        <Link to="/tags">Tags</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Map />} />
+        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/timeline" element={<Timeline />} />
+        <Route path="/tags" element={<Tags />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App
